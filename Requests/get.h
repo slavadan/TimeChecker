@@ -1,11 +1,12 @@
-#include "../requests.h"
+#include <curl/curl.h>
+#include <string>
 
 
-class Get: HttpRequest
+class Requests
 {
 public:
 
-    void send_http_request();
-    void send_https_request();
+    static void send_http_request(const std::string& url);
+    static void send_https_request(const std::string& url);
 
 };

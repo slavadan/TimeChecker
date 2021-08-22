@@ -1,4 +1,7 @@
 #include <string>
+#include <iostream>
+#include <ctime>
+#include <fstream>
 
 
 class LogUtility
@@ -11,4 +14,6 @@ public:
 
 private:
     
+    static std::string get_current_time();
+
 };

@@ -1,9 +1,17 @@
+#include <string>
 
 
 class Parser
 {
+private:
+
+    struct  date
+    {
+        int day, hour, minite, sec, year;
+    };
+
 public:
 
-private:
+    static date parse();
 
 };
