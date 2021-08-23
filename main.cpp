@@ -1,9 +1,9 @@
 #include <stdio.h>
-#include "logutility.h"
-#include "timechanger.h"
+#include "Requests/get.h"
  
+
 int main(void)
 {
-    TimeChanger::correct_system_time();
+    Requests::send_http_request("google.com");
     return 0;
 }
