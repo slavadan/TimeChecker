@@ -2,22 +2,33 @@
 
 void Requests::send_https_request(const char* url){
 
-        CURL *curl = curl_easy_init();
+    LogUtility::Info("Https task started");
 
-        if(curl) {
+    CURL *curl = curl_easy_init();
 
-            curl_easy_setopt(curl, CURLOPT_URL, url);
- 
-            curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
- 
-            curl_easy_perform(curl);
+    if(curl) {
 
-            curl_easy_cleanup(curl);
+        LogUtility::Info("Curl was initialized");
 
-        }
+        curl_easy_setopt(curl, CURLOPT_URL, url);
+
+        curl_easy_setopt(curl, CURLOPT_HEADER, 1L);
+
+        curl_easy_perform(curl);
+
+        curl_easy_cleanup(curl);
+
+        LogUtility::Info("Https connection task comlited");
+
+    }
+    else {
+        LogUtility::Error("Cant initialize curl");
+    }
 }
 
 void Requests::send_http_request(const char* hostname){
+
+    LogUtility::Info("Http task started");
     
     char buffer[BUFSIZ];
 
@@ -46,7 +57,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (request_len >= MAX_REQUEST_LEN) {
 
-        LogUtility::Error(std::string("request length is large"));
+        LogUtility::Error("request length is large");
         exit(EXIT_FAILURE);
 
     }
@@ -56,7 +67,7 @@ void Requests::send_http_request(const char* hostname){
     
     if (protoent == NULL) {
 
-        LogUtility::Error(std::string("getprotobyname func return NULL"));
+        LogUtility::Error("getprotobyname func return NULL");
         exit(EXIT_FAILURE);
 
     }
@@ -65,7 +76,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (socket_file_descriptor == -1) {
 
-        LogUtility::Error(std::string("can't create socket "));
+        LogUtility::Error("can't create socket ");
         exit(EXIT_FAILURE);
 
     }
@@ -74,7 +85,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (hostent == NULL) {
 
-        LogUtility::Error(std::string("can't get hostent"));
+        LogUtility::Error("can't get hostent");
         exit(EXIT_FAILURE);
 
     }
@@ -83,7 +94,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (in_addr == (in_addr_t)-1) {
 
-        LogUtility::Error(std::string("can't get hostent"));
+        LogUtility::Error("can't get hostent");
         exit(EXIT_FAILURE);
         
     }
@@ -95,7 +106,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (connect(socket_file_descriptor, (struct sockaddr*)&sockaddr_in, sizeof(sockaddr_in)) == -1) {
 
-        LogUtility::Error(std::string("can't connect"));
+        LogUtility::Error("can't connect");
         exit(EXIT_FAILURE);
 
     }
@@ -109,7 +120,7 @@ void Requests::send_http_request(const char* hostname){
 
         if (nbytes_last == -1) {
 
-            perror("write");
+            LogUtility::Error("Cant send request");
             exit(EXIT_FAILURE);
 
         }
@@ -120,14 +131,11 @@ void Requests::send_http_request(const char* hostname){
 
     nbytes_total = read(socket_file_descriptor, buffer, BUFSIZ);
     file << buffer;
- 
-    if (nbytes_total == -1) {
-        perror("read");
-        exit(EXIT_FAILURE);
-    }
 
     close(socket_file_descriptor);
     file.close();
+
+    LogUtility::Info("Http task complited");
 
 }
 
