@@ -40,25 +40,23 @@ void Requests::send_http_request(const char* hostname){
 
     unsigned short server_port = 80;
 
-    std::ofstream file("response.txt", std::ios_base::out | std::ios_base::trunc);
+    std::ofstream file("response.html", std::ios_base::out | std::ios_base::trunc);
 
     request_len = snprintf(request, MAX_REQUEST_LEN, request_template, hostname);
 
     if (request_len >= MAX_REQUEST_LEN) {
 
-        fprintf(stderr, "request length large: %d\n", request_len);
-
+        LogUtility::Error(std::string("request length is large"));
         exit(EXIT_FAILURE);
 
     }
 
 
     protoent = getprotobyname("tcp");
-
+    
     if (protoent == NULL) {
 
-        perror("getprotobyname");
-
+        LogUtility::Error(std::string("getprotobyname func return NULL"));
         exit(EXIT_FAILURE);
 
     }
@@ -67,8 +65,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (socket_file_descriptor == -1) {
 
-        perror("socket");
-
+        LogUtility::Error(std::string("can't create socket "));
         exit(EXIT_FAILURE);
 
     }
@@ -77,8 +74,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (hostent == NULL) {
 
-        fprintf(stderr, "error: gethostbyname(\"%s\")\n", hostname);
-
+        LogUtility::Error(std::string("can't get hostent"));
         exit(EXIT_FAILURE);
 
     }
@@ -87,8 +83,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (in_addr == (in_addr_t)-1) {
 
-        fprintf(stderr, "error: inet_addr(\"%s\")\n", *(hostent->h_addr_list));
-
+        LogUtility::Error(std::string("can't get hostent"));
         exit(EXIT_FAILURE);
         
     }
@@ -100,7 +95,7 @@ void Requests::send_http_request(const char* hostname){
 
     if (connect(socket_file_descriptor, (struct sockaddr*)&sockaddr_in, sizeof(sockaddr_in)) == -1) {
 
-        perror("connect");
+        LogUtility::Error(std::string("can't connect"));
         exit(EXIT_FAILURE);
 
     }
@@ -123,18 +118,9 @@ void Requests::send_http_request(const char* hostname){
 
     }
 
-
-    fprintf(stderr, "debug: before first read\n");
-    
-    while ((nbytes_total = read(socket_file_descriptor, buffer, BUFSIZ)) > 0) {
-
-        std::cout << buffer << std::endl;
-        file << buffer;
-        break;
-        
-    }
-
-    
+    nbytes_total = read(socket_file_descriptor, buffer, BUFSIZ);
+    file << buffer;
+ 
     if (nbytes_total == -1) {
         perror("read");
         exit(EXIT_FAILURE);

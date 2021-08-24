@@ -1,17 +1,18 @@
 #include <string>
+#include <regex>
 
 
 class Parser
 {
-private:
-
-    struct  date
-    {
-        int day, hour, minite, sec, year;
-    };
-
 public:
 
-    static date parse();
+    struct  Date
+    {
+        int day, hour, minite, sec, year, m;
+    };
+
+    static Date parse();
+
+private:
 
 };

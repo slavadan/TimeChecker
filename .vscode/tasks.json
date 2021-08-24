@@ -9,7 +9,7 @@
 				"-Wall",
 				"-g",
 				"${workspaceFolder}/*.cpp", "${workspaceFolder}/Requests/get.cpp",
-				"-lcurl", "-o", 
+				"-lcurl", "-pthread","-o", 
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],
 			"options": {
