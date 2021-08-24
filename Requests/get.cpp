@@ -40,7 +40,7 @@ void Requests::send_http_request(const char* hostname){
 
     unsigned short server_port = 80;
 
-    std::ofstream file("response.html", std::ios_base::out | std::ios_base::trunc);
+    std::ofstream file("response.txt", std::ios_base::out | std::ios_base::trunc);
 
     request_len = snprintf(request, MAX_REQUEST_LEN, request_template, hostname);
 
@@ -128,7 +128,6 @@ void Requests::send_http_request(const char* hostname){
 
     close(socket_file_descriptor);
     file.close();
-    exit(EXIT_SUCCESS);
 
 }
 

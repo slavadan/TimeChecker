@@ -1,15 +1,17 @@
-#include <stdlib.h> 
-#include "parser.h"
+#include <stdlib.h>
+#include <string>
+#include <string.h>
+#include <iostream>
 
 
 class TimeChanger
 {
 public:
 
-    static void correct_system_time(Parser::Date& date);
+    static void correct_system_time(std::string& date);
 
 private:
 
-    static std::string& format_string(std::string& command);
+    static char* create_command(std::string& date);
     
 };

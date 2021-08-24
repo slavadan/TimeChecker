@@ -1,18 +1,17 @@
 #include <string>
+#include <fstream>
 #include <regex>
-
+#include <vector>
+#include <iostream>
 
 class Parser
 {
 public:
 
-    struct  Date
-    {
-        int day, hour, minite, sec, year, m;
-    };
-
-    static Date parse();
+    static std::string find_date();
 
 private:
+
+    static void format_date(std::string& date);
 
 };
