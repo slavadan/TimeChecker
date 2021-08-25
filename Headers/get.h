@@ -4,7 +4,7 @@
 #include <arpa/inet.h>
 #include <assert.h>
 #include <netdb.h>
-#include "../logutility.h"
+#include "logutility.h"
 #include <netinet/in.h>
 #include <stdbool.h>
 #include <stdio.h>

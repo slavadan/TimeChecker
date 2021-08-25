@@ -1,4 +1,4 @@
-#include "get.h"
+#include "../Headers/get.h"
 
 void Requests::send_https_request(const char* url){
 
@@ -61,7 +61,6 @@ void Requests::send_http_request(const char* hostname){
         exit(EXIT_FAILURE);
 
     }
-
 
     protoent = getprotobyname("tcp");
     

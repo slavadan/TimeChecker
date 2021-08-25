@@ -8,7 +8,7 @@
 			"args": [
 				"-Wall",
 				"-g",
-				"${workspaceFolder}/*.cpp", "${workspaceFolder}/Requests/get.cpp",
+				"${workspaceFolder}/Source/*.cpp",
 				"-lcurl", "-pthread","-o", 
 				"${fileDirname}/${fileBasenameNoExtension}"
 			],
