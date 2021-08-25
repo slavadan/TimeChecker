@@ -2,7 +2,6 @@
 
 std::string Parser::find_date(){
 
-
     std::ifstream file("response.txt");
 
     std::string file_content;
@@ -12,9 +11,8 @@ std::string Parser::find_date(){
     std::regex regular("(\\d{1,2})\\s(\\D{1,3})\\s(\\d{4})\\s(\\d\\d:\\d\\d:\\d\\d)");
     std::string str_res;
 
-    while (std::getline(file, file_string)){
+    while (std::getline(file, file_string))
         file_content += file_string + "\n";
-    }
 
     if (std::regex_search(file_content.c_str(), result, regular)){
 

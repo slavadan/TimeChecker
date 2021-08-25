@@ -6,6 +6,4 @@ public:
 
     void start_solution();
 
-private:
-
 };
