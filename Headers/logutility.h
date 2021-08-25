@@ -9,12 +9,13 @@ class LogUtility
 {
 public:
 
-    static void Info(std::string message);
-    static void Error(std::string message);
+    static void Info(const std::string& message);
+    static void Error(const std::string& message);
 
 private:
     
     static std::string get_current_time();
     static void save_to_file(std::string formated_message);
+    static void Log(const std::string& preamble, const std::string& message);
 
 };

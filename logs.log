@@ -98,3 +98,11 @@ Test[Mon Aug 23 12:57:07 2021]
 [Info]Curl was initialized[Wed Aug 25 03:11:02 2021]
 [Info]Https connection task comlited[Wed Aug 25 03:11:02 2021]
 [Info]Program complited[Wed Aug 25 03:11:02 2021]
+[Info: Wed Aug 25 03:00:05 2021] Http task started
+[Info: Wed Aug 25 03:00:05 2021] Http task complited
+[Info: Wed Aug 25 03:00:05 2021] Date was found
+[Info: Wed Aug 25 03:00:05 2021] Month was found
+[Info: Wed Aug 25 03:14:31 2021] Https task started
+[Info: Wed Aug 25 03:14:31 2021] Curl was initialized
+[Info: Wed Aug 25 03:14:31 2021] Https connection task comlited
+[Info: Wed Aug 25 03:14:31 2021] Program complited
